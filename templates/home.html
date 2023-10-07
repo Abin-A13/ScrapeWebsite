@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple HTTP Server</title>
+  </head>
+  <body>
+    <h1 center>List Websites</h1>
+    <div class="flats">
+      {% for flat in flats %}
+
+      <div class="flat">
+        <img src={{ flat.get('image_url') }}>
+        <h2>{{ flat.get('title') }}</h2>
+      </div>
+
+
+      {% endfor %}
+    </div>
+  </body>
+</html>
