@@ -1,0 +1,266 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "environ",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_project_settings",
+        "importPath": "scrapy.utils.project",
+        "description": "scrapy.utils.project",
+        "isExtraImport": true,
+        "detail": "scrapy.utils.project",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "extensions",
+        "description": "extensions",
+        "isExtraImport": true,
+        "detail": "extensions",
+        "documentation": {}
+    },
+    {
+        "label": "Flat",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {}
+    },
+    {
+        "label": "scrapy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "scrapy",
+        "description": "scrapy",
+        "detail": "scrapy",
+        "documentation": {}
+    },
+    {
+        "label": "signals",
+        "importPath": "scrapy",
+        "description": "scrapy",
+        "isExtraImport": true,
+        "detail": "scrapy",
+        "documentation": {}
+    },
+    {
+        "label": "dispatcher",
+        "importPath": "scrapy.signalmanager",
+        "description": "scrapy.signalmanager",
+        "isExtraImport": true,
+        "detail": "scrapy.signalmanager",
+        "documentation": {}
+    },
+    {
+        "label": "CrawlerRunner",
+        "importPath": "scrapy.crawler",
+        "description": "scrapy.crawler",
+        "isExtraImport": true,
+        "detail": "scrapy.crawler",
+        "documentation": {}
+    },
+    {
+        "label": "CrawlerProcess",
+        "importPath": "scrapy.crawler",
+        "description": "scrapy.crawler",
+        "isExtraImport": true,
+        "detail": "scrapy.crawler",
+        "documentation": {}
+    },
+    {
+        "label": "FlatsSpider",
+        "importPath": "spiders",
+        "description": "spiders",
+        "isExtraImport": true,
+        "detail": "spiders",
+        "documentation": {}
+    },
+    {
+        "label": "FlaskGroup",
+        "importPath": "flask.cli",
+        "description": "flask.cli",
+        "isExtraImport": true,
+        "detail": "flask.cli",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "server",
+        "description": "server",
+        "isExtraImport": true,
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "importPath": "server",
+        "description": "server",
+        "isExtraImport": true,
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "class Config(object):\n    SQLALCHEMY_DATABASE_URI = environ.get('DB_URL')\n    SQLALCHEMY_TRACK_MODIFICATIONS = False",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "basedir",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "basedir = os.path.abspath(os.path.dirname(__file__))\nclass Config(object):\n    SQLALCHEMY_DATABASE_URI = environ.get('DB_URL')\n    SQLALCHEMY_TRACK_MODIFICATIONS = False",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "crawler_results",
+        "kind": 2,
+        "importPath": "crawler",
+        "description": "crawler",
+        "peekOfCode": "def crawler_results(signal, sender, item, response, spider):\n    results.append(item)\ndef crawl_flats():\n    dispatcher.connect(crawler_results, signal=signals.item_scraped)\n    process = CrawlerProcess(get_project_settings())\n    process.crawl(FlatsSpider)\n    process.start()\n    for item in results:\n        db.session.add(\n            Flat(item.get('title'), item.get('image_url'))",
+        "detail": "crawler",
+        "documentation": {}
+    },
+    {
+        "label": "crawl_flats",
+        "kind": 2,
+        "importPath": "crawler",
+        "description": "crawler",
+        "peekOfCode": "def crawl_flats():\n    dispatcher.connect(crawler_results, signal=signals.item_scraped)\n    process = CrawlerProcess(get_project_settings())\n    process.crawl(FlatsSpider)\n    process.start()\n    for item in results:\n        db.session.add(\n            Flat(item.get('title'), item.get('image_url'))\n        )\n    db.session.commit()",
+        "detail": "crawler",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": "crawler",
+        "description": "crawler",
+        "peekOfCode": "results = []\ndef crawler_results(signal, sender, item, response, spider):\n    results.append(item)\ndef crawl_flats():\n    dispatcher.connect(crawler_results, signal=signals.item_scraped)\n    process = CrawlerProcess(get_project_settings())\n    process.crawl(FlatsSpider)\n    process.start()\n    for item in results:\n        db.session.add(",
+        "detail": "crawler",
+        "documentation": {}
+    },
+    {
+        "label": "create_db",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def create_db():\n    db.drop_all()\n    db.create_all()\n    db.session.commit()\nif __name__ == \"__main__\":\n    cli()",
+        "detail": "manage",
+        "documentation": {}
+    },
+    {
+        "label": "cli",
+        "kind": 5,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "cli = FlaskGroup(app)\n@cli.command(\"create_db\")\ndef create_db():\n    db.drop_all()\n    db.create_all()\n    db.session.commit()\nif __name__ == \"__main__\":\n    cli()",
+        "detail": "manage",
+        "documentation": {}
+    },
+    {
+        "label": "Flat",
+        "kind": 6,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "class Flat(db.Model):\n    __tablename__ = \"flat\"\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(255), unique=False, nullable=False)\n    image_url = db.Column(db.String(255), unique=False, nullable=True)\n    def __init__(self, title, image_url):\n        self.title = title\n        self.image_url = image_url\n@app.route('/')\ndef index():",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "def index():\n    flats = []\n    for flat in db.session.query(Flat).all():\n        del flat.__dict__['_sa_instance_state']\n        flats.append(flat.__dict__)\n    return render_template('home.html')",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "app = Flask(__name__)\napp.config.from_object(\"config.Config\")\ndb = SQLAlchemy(app)\nclass Flat(db.Model):\n    __tablename__ = \"flat\"\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(255), unique=False, nullable=False)\n    image_url = db.Column(db.String(255), unique=False, nullable=True)\n    def __init__(self, title, image_url):\n        self.title = title",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "server",
+        "description": "server",
+        "peekOfCode": "db = SQLAlchemy(app)\nclass Flat(db.Model):\n    __tablename__ = \"flat\"\n    id = db.Column(db.Integer, primary_key=True)\n    title = db.Column(db.String(255), unique=False, nullable=False)\n    image_url = db.Column(db.String(255), unique=False, nullable=True)\n    def __init__(self, title, image_url):\n        self.title = title\n        self.image_url = image_url\n@app.route('/')",
+        "detail": "server",
+        "documentation": {}
+    },
+    {
+        "label": "FlatsSpider",
+        "kind": 6,
+        "importPath": "spiders",
+        "description": "spiders",
+        "peekOfCode": "class FlatsSpider(scrapy.Spider):\n    name = 'flats'\n    start_urls = ['https://www.sreality.cz/api/cs/v2/estates?category_main_cb=1&category_type_cb=1&page=0&per_page=500']\n    def parse(self, response, **kwargs):\n        response_json = json.loads(response.body)\n        print(response_json)\n        for flat in response_json.get('_embedded').get('estates'):\n            yield (\n                {\n                    'title': re.sub(r'\\s', ' ', flat.get('name')),",
+        "detail": "spiders",
+        "documentation": {}
+    }
+]

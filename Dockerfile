@@ -1,14 +1,18 @@
-FROM python:3.9
+FROM python:3.12.0-slim-bookworm
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY . /app
 
+
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV FLASK_APP=server.py
+
+RUN pip install --upgrade pip
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+COPY . /usr/src/app
 
-EXPOSE 8080
 
-ENV env WORLD
-
-CMD ["flask", "run","--host=0.0.0.0"]
